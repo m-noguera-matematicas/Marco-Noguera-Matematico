@@ -1,2 +1,2 @@
-# Calculo
-En este repositorio se encuentran materiales para el estudio de cálculo diferencial e integral
+# Portal Marco ANtonio Noguera Alvarenga, Matemático
+En este repositorio se encuentran materiales académicos
