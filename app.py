@@ -1,124 +1,45 @@
 import streamlit as st
-from pathlib import Path
 
 st.set_page_config(
-    page_title="Portal Docente | Marco Noguera",
+    page_title="Portal Docente",
     page_icon="📚",
     layout="wide"
 )
 
-# -----------------------------
-# Datos generales
-# -----------------------------
+st.title("Portal de Materiales Académicos")
 
-MATERIAS = {
-    "Cálculo Integral": "materiales/calculo_integral",
-    "Cálculo para Administración": "materiales/calculo_administracion",
-    "Probabilidad y Estadística": "materiales/probabilidad_estadistica",
-    "Estadística Inferencial": "materiales/estadistica_inferencial",
-    "Diseño de Experimentos": "materiales/diseno_experimentos",
-    "Investigación de Operaciones": "materiales/investigacion_operaciones",
-}
+st.divider()
 
+col1, col2 = st.columns([1,2])
 
-def mostrar_pdfs(carpeta):
-    ruta = Path(carpeta)
+with col1:
 
-    if not ruta.exists():
-        st.info("Aún no hay materiales cargados para esta materia.")
-        return
+    st.image("foto.jpg", width=280)
 
-    archivos_pdf = sorted(ruta.glob("*.pdf"))
+with col2:
 
-    if not archivos_pdf:
-        st.info("Aún no hay archivos PDF en esta sección.")
-        return
+    st.header("Marco Antonio Noguera Alvarenga")
 
-    for archivo in archivos_pdf:
-        with open(archivo, "rb") as f:
-            st.download_button(
-                label=f"📄 Descargar {archivo.stem}",
-                data=f,
-                file_name=archivo.name,
-                mime="application/pdf"
-            )
+    st.subheader("Matemático")
 
+    st.write("""
+Soy **Marco Antonio Noguera Alvarenga**, venezolano de nacimiento y mexicano de corazón.
+Desde hace más de **17 años** tengo el privilegio de dedicarme a la docencia universitaria,
+una profesión que considero no solo un trabajo, sino una verdadera vocación.
 
-# -----------------------------
-# Barra lateral
-# -----------------------------
+Mi formación académica es la de **Matemático**. A lo largo de mi trayectoria he impartido
+cursos de cálculo, probabilidad, estadística, investigación de operaciones y diseño de
+experimentos, convencido de que las matemáticas son una herramienta fundamental para
+comprender el mundo y desarrollar el pensamiento crítico.
 
-st.sidebar.title("📚 Portal Docente")
+Creo firmemente que la educación es el camino más sólido para construir una mejor sociedad,
+y que un buen profesor no solo transmite conocimientos, sino también curiosidad,
+disciplina y el deseo permanente de aprender.
 
-seccion = st.sidebar.radio(
-    "Selecciona una sección",
-    ["Inicio"] + list(MATERIAS.keys())
-)
+Fuera del aula disfruto de una buena taza de café, la ciencia ficción, la lectura,
+el metal sinfónico y el estudio de temas relacionados con la ciencia y la filosofía.
 
-st.sidebar.divider()
-st.sidebar.caption("Marco Antonio Noguera Alvarenga")
+> *"No podemos elegir las circunstancias, pero siempre podemos elegir la manera de responder a ellas."*
 
-
-# -----------------------------
-# Página principal
-# -----------------------------
-
-if seccion == "Inicio":
-    st.title("Portal Docente")
-    st.subheader("Marco Antonio Noguera Alvarenga")
-
-    col1, col2 = st.columns([1, 2])
-
-    with col1:
-        try:
-            st.image("foto.jpg", caption="Marco Antonio Noguera Alvarenga", width=260)
-        except:
-            st.info("Aquí irá tu fotografía.")
-
-    with col2:
-        st.markdown("""
-Soy profesor de matemáticas. Este portal reúne materiales de apoyo para mis cursos:
-notas de clase, libros, problemarios, tareas, exámenes y documentos complementarios.
-
-Por ahora el sitio funcionará como repositorio de archivos PDF. Más adelante se podrán
-agregar enlaces a videos, páginas web, simuladores, aplicaciones interactivas y otros
-recursos digitales.
+Bienvenido a este portal.
 """)
-
-    st.divider()
-
-    st.header("Materias disponibles")
-
-    col_a, col_b = st.columns(2)
-
-    with col_a:
-        st.markdown("""
-- 📘 **Cálculo Integral**
-- 📗 **Cálculo para Administración**
-- 📊 **Probabilidad y Estadística**
-""")
-
-    with col_b:
-        st.markdown("""
-- 📈 **Estadística Inferencial**
-- 🧪 **Diseño de Experimentos**
-- ⚙️ **Investigación de Operaciones**
-""")
-
-    st.info("Usa el menú lateral para entrar a cada materia.")
-
-
-# -----------------------------
-# Páginas de materias
-# -----------------------------
-
-else:
-    st.title(seccion)
-    st.write("Materiales disponibles para descarga.")
-
-    carpeta = MATERIAS[seccion]
-    mostrar_pdfs(carpeta)
-
-    st.divider()
-    st.caption("Más adelante esta sección podrá incluir enlaces, videos y aplicaciones interactivas.")
-
