@@ -10,7 +10,7 @@ col1, col2 = st.columns([1,2])
 
 with col1:
 
-    st.image("foto.jpeg", width=300)
+    st.image("foto.jpeg", width=320)
 
 with col2:
 
