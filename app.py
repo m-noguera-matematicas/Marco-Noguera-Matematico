@@ -18,7 +18,7 @@ with col2:
 
     st.subheader("Matemático")
 
-    st.divider()
+    #st.divider()
 
     st.write("""
 Soy **Marco Antonio Noguera Alvarenga**, venezolano de nacimiento y mexicano de corazón.
