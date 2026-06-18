@@ -142,4 +142,3 @@ with col2:
 
 st.divider()
 
-st.caption("Sitio académico para distribución de materiales de clase.")
